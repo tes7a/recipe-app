@@ -7,7 +7,7 @@ import {Recipe, recipeAPI} from "./api/recipeAPI";
 
 function App() {
     const [recipes, setRecipes] = useState<Recipe[]>([])
-    const [favorite, setFavorite] = useState<Recipe[]>([])
+    const [favorite, setFavorite] = useState<any>([])
 
     useEffect(() => {
         recipeAPI.getRecipe()

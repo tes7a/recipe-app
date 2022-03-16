@@ -7,8 +7,10 @@ type Favorites = {
 
 export const Favorites: React.FC<Favorites> = ({favorite}) => {
     return (<>
-        {favorite.map(f =>
-        <h1>{f.strArea}</h1>
-        )}
+        <ul>
+            {favorite.map(f =>
+                <h1>{f.strArea}</h1>
+            )}
+        </ul>
     </>)
 }

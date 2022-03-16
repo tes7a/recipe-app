@@ -7,7 +7,7 @@ type Recipes = {
     recipes: Recipe[],
     setRecipes: (recipe: Recipe[]) => void,
     favorite: Recipe[],
-    setFavorite: (favRec: Recipe[]) => void,
+    setFavorite: (recipe: Recipe[]) => void,
 }
 
 export const Recipes: React.FC<Recipes> = ({recipes, setRecipes, favorite, setFavorite}) => {
@@ -18,11 +18,10 @@ export const Recipes: React.FC<Recipes> = ({recipes, setRecipes, favorite, setFa
     }, [recipes])
 
     const onSaveHandler = useCallback(() => {
-        favoriteRecipe(recipes);
+        setFavorite(favoriteRecipe(recipes[0]));
         recipeAPI.getRecipe()
             .then(res => setRecipes(res.meals));
-    }, [recipes])
-
+    }, [recipes, favorite])
 
     return <div>
         {recipes.map(r =>
