@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import {Recipes} from "./components/recipes/Recipes";
+import {Favorites} from "./components/favorites/Favorites";
+import {Header} from "./components/header/Header";
+import {Recipe, recipeAPI} from "./api/recipeAPI";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [recipes, setRecipes] = useState<Recipe[]>([])
+    const [favorite, setFavorite] = useState<Recipe[]>([])
+
+    useEffect(() => {
+        recipeAPI.getRecipe()
+            .then(res => {
+                setRecipes(res.meals);
+            })
+    }, [])
+    return (
+        <div>
+            <Header/>
+            <Recipes
+                setRecipes={setRecipes}
+                recipes={recipes}
+                favorite={favorite}
+                setFavorite={setFavorite}
+            />
+            <Favorites
+                favorite={favorite}
+            />
+        </div>
+    );
 }
 
 export default App;
