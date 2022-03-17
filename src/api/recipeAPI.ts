@@ -2,8 +2,8 @@ import axios from "axios";
 
 export const recipeAPI = {
     getRecipe() {
-       return axios.get<Meals>('https://www.themealdb.com/api/json/v1/1/random.php')
-           .then(res => res.data)
+        return axios.get<Meals>('https://www.themealdb.com/api/json/v1/1/random.php')
+            .then(res => res.data)
     }
 }
 

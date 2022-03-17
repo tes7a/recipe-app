@@ -1,7 +1,8 @@
-import React, {useCallback, useEffect, useState} from "react";
-import {Recipe, recipeAPI} from "../../api/recipeAPI";
-import {HeaderRecipe} from "./header-recipe/HeaderRecipe";
-import {favoriteRecipe} from "../../utils/favorite-local-sotrage";
+import React, {useCallback, useEffect} from "react";
+import { GetRecipe } from "../../api/getRecipe";
+import {Recipe} from "../../api/recipeAPI";
+import { favoriteRecipe } from "../../utils/favorite-local-sotrage";
+import { Ingredients } from "./ingredients/Ingredients";
 
 type Recipes = {
     recipes: Recipe[],
@@ -13,44 +14,24 @@ type Recipes = {
 export const Recipes: React.FC<Recipes> = ({recipes, setRecipes, favorite, setFavorite}) => {
 
     const onSkipHandler = useCallback(() => {
-        recipeAPI.getRecipe()
-            .then(res => setRecipes(res.meals));
+        GetRecipe(setRecipes);
     }, [recipes])
 
     const onSaveHandler = useCallback(() => {
         setFavorite(favoriteRecipe(recipes[0]));
-        recipeAPI.getRecipe()
-            .then(res => setRecipes(res.meals));
-    }, [recipes, favorite])
+        GetRecipe(setRecipes);
+    }, [recipes])
+
+    useEffect(() => {
+        let res = JSON.parse(localStorage.getItem('favourites') as string);
+        if (res) {
+            setFavorite(res);
+        }
+    }, [])
 
     return <div>
-        {recipes.map(r =>
-            <HeaderRecipe
-                key={r.idMeal}
-                strArea={r.strArea}
-                strCategory={r.strCategory}
-                strMeal={r.strMeal}
-                strMealThumb={r.strMealThumb}
-                strTags={r.strTags}
-            />
-        )}
         <div>
-            <table>
-                <thead>
-                <tr>
-                    <td>Ingredient</td>
-                    <td>Measure</td>
-                </tr>
-                </thead>
-                <tbody>
-                {recipes.map(r =>
-                    <tr>
-                        <td>{r.strIngredient1}</td>
-                        <td>{r.strMeasure1}</td>
-                    </tr>
-                )}
-                </tbody>
-            </table>
+            <Ingredients recipe={recipes[0]}/>
         </div>
         <div>
             <button onClick={onSaveHandler}>Save</button>

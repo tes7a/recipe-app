@@ -5,18 +5,16 @@ type HeaderRecipe = {
     strCategory: string,
     strArea: string,
     strTags: string,
-    strMealThumb: string
+    strMealThumb: string,
 }
 
-export const HeaderRecipe: React.FC<HeaderRecipe> = (
-    {
-        strMealThumb,
-        strCategory,
-        strMeal,
-        strTags,
-        strArea
-    }
-) => {
+export const HeaderRecipe: React.FC<HeaderRecipe> = ({
+                                                         strTags,
+                                                         strMealThumb,
+                                                         strMeal,
+                                                         strCategory,
+                                                         strArea
+                                                     }) => {
     return (
         <div>
             <h1>
