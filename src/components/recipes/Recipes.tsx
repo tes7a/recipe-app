@@ -5,7 +5,7 @@ import {favoriteRecipe} from "../../utils/favorite-local-sotrage";
 import {Ingredients} from "./ingredients/Ingredients";
 import s from './recipe.module.css';
 import sContainer from '../../Styles/Container.module.css'
-
+import Button from "react-bootstrap/esm/Button";
 
 type Recipes = {
     recipes: Recipe[],
@@ -33,13 +33,14 @@ export const Recipes: React.FC<Recipes> = ({recipes, setRecipes, favorite, setFa
         }
     }, [])
 
-    return <div>
-        <div className={sContainer.container}>
+    return (
+        <div>
+        <div>
             <Ingredients recipe={recipes[0]}/>
-            <div>
-                <button onClick={onSaveHandler} className={s.btn}>Save</button>
-                <button onClick={onSkipHandler} className={s.btn}>Skip</button>
+            <div className={s.btn}>
+                <Button onClick={onSaveHandler}>Save</Button>
+                <Button onClick={onSkipHandler}>Skip</Button>
             </div>
         </div>
     </div>
-}
+    )}

@@ -1,6 +1,6 @@
 import React from "react";
 import {Favorites} from "./Favorites";
-import {Modal} from "../modal/Modal";
+import {ModalWindow} from "../modal/ModalWindow";
 import {useFavorites} from "../../utils/useFavorites";
 import {useShow} from "../../utils/useShow";
 
@@ -10,7 +10,7 @@ export const FavoritesComponent = () => {
 
         return(
         <div>
-            <Modal
+            <ModalWindow
                 setFavorite={setFavorite}
                 show={show}
                 setShow={setShow}

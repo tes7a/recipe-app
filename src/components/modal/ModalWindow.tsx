@@ -3,14 +3,15 @@ import {Recipe} from "../../api/recipeAPI";
 import {favoriteRecipe} from "../../utils/favorite-local-sotrage";
 import {NewRecipe} from "../recipes/newRecipe/newRecipe";
 import {useOnClickOutside} from "../../utils/useOnClickOutside";
+import {Modal} from "react-bootstrap";
 
-type Modal = {
+type ModalWindow = {
     show: boolean,
     setShow: (value: boolean) => void,
     setFavorite: (recipe: Recipe[]) => void,
 }
 
-export const Modal: React.FC<Modal> = ({
+export const ModalWindow: React.FC<ModalWindow> = ({
                                            show,
                                            setShow,
                                            setFavorite
@@ -49,7 +50,7 @@ export const Modal: React.FC<Modal> = ({
     }, [])
 
     return (
-        <div>
+        <Modal show={show}>
             {show &&
             <div ref={ref}>
                 <div>
@@ -65,6 +66,6 @@ export const Modal: React.FC<Modal> = ({
                 <button onClick={onClose}>X</button>
             </div>
             }
-        </div>
+        </Modal>
     )
 }
