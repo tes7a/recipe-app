@@ -3,7 +3,9 @@ import {Recipe} from "../../api/recipeAPI";
 import {favoriteRecipe} from "../../utils/favorite-local-sotrage";
 import {NewRecipe} from "../recipes/newRecipe/newRecipe";
 import {useOnClickOutside} from "../../utils/useOnClickOutside";
-import {Modal} from "react-bootstrap";
+import {Form, FormGroup, Modal} from "react-bootstrap";
+import s from './modal.module.css'
+import Button from "react-bootstrap/esm/Button";
 
 type ModalWindow = {
     show: boolean,
@@ -20,6 +22,7 @@ export const ModalWindow: React.FC<ModalWindow> = ({
     const [instruction,setInstruction] = useState('')
     const [ingredient,setIngredient] = useState('')
 
+    console.log(show)
     const onAddDishHandler = () => {
         setFavorite(favoriteRecipe(NewRecipe(title, instruction, ingredient)));
         setShow(false);
@@ -51,21 +54,42 @@ export const ModalWindow: React.FC<ModalWindow> = ({
 
     return (
         <Modal show={show}>
-            {show &&
-            <div ref={ref}>
-                <div>
-                    <input onChange={titleHandler}/>
-                </div>
-                <div>
-                    <input onChange={ingredientHandler}/>
-                </div>
-                <div>
-                    <input onChange={instructionHandler}/>
-                </div>
-                <button onClick={onAddDishHandler}>Add Recipe</button>
-                <button onClick={onClose}>X</button>
-            </div>
-            }
+            <Modal.Header closeButton={onClose}>
+                <Modal.Title>Add You Custom Dish</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {show &&
+                <div ref={ref}>
+                    <Form>
+                        <FormGroup controlId={'titleDish'}>
+                            <Form.Label>Name Dish</Form.Label>
+                            <Form.Control placeholder={"Name"} onChange={titleHandler}/>
+                        </FormGroup>
+                        <FormGroup controlId={'ingrDish'}>
+                            <Form.Label>Ingredients</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                className={s.inputIngr}
+                                type={'text'}
+                                placeholder={"Ingredients"}
+                                onChange={ingredientHandler}
+                                aria-autocomplete={'none'}
+                            />
+                        </FormGroup>
+                        <FormGroup controlId={'instrDish'}>
+                            <Form.Label>Instruction</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                className={s.inputInstr}
+                                placeholder={"Instruction"}
+                                onChange={instructionHandler}/>
+                        </FormGroup>
+                    </Form>
+                    <Modal.Footer className={s.btnModal}>
+                        <Button variant="outline-dark" onClick={onAddDishHandler}>Add Recipe</Button>
+                    </Modal.Footer>
+                </div>}
+            </Modal.Body>
         </Modal>
     )
 }

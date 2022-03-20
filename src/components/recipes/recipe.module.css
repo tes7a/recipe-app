@@ -1,4 +1,15 @@
 .btn {
-
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding-bottom: 10px;
 }
 
+.btnSave svg {
+    margin-right: 5px;
+}
+
+.btn svg {
+    position: relative;
+    bottom: 2px;
+}

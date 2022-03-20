@@ -4,19 +4,11 @@ import { Ingredients } from "../recipes/ingredients/Ingredients";
 
 type Favorites = {
     favorite: Recipe[],
-    setShow: (value: boolean) => void,
 }
 
-export const Favorites: React.FC<Favorites> = ({favorite, setShow}) => {
-
-    const onShowHandler = () => {
-        setShow(true)
-    }
+export const Favorites: React.FC<Favorites> = ({favorite}) => {
 
     return (<>
-        <div>
-            <button onClick={onShowHandler}>Add Dish</button>
-        </div>
         <ul>
             {favorite.map(f =>
                 <Ingredients key={f.idMeal} recipe={f}/>

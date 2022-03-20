@@ -1,8 +1,105 @@
 .img {
     width: 250px;
     height: 250px;
+    border-radius: 10px;
+}
+
+.mainCard {
+    border: none;
+    margin: 25px;
+}
+
+.title {
+    font-weight: 600;
+    letter-spacing: 0.07em;
+}
+
+.containerImg {
+    padding-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.containerImg h5 {
+    padding-top: 10px
+}
+
+.card > h3 {
+    padding-bottom: 10px;
+}
+
+.containerImg > h6 {
+    padding-bottom: 10px;
+}
+
+.tableWrapper {
+    max-height: 340px;
+    overflow: auto;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0px 15px 5px 5px;
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.ingrTable {
+
+}
+
+.ingrTable tbody tr:first-child td {
+    padding-top: 15px;
+}
+
+.ingrTable tbody td {
+    padding: 3px 0px;
+}
+
+.ingrTable tbody td:last-child {
+    text-align: right;
+}
+
+.ingrTable tbody td:first-child {
+    padding-right: 80px;
+}
+
+
+html, body {
+    scrollbar-color: #212529 white; /* «цвет ползунка» «цвет полосы скроллбара» */
+    scrollbar-width: thin; /* толщина */
+}
+
+::-webkit-scrollbar {
+    width: 8px; /* ширина для вертикального скролла */
+    height: 8px; /* высота для горизонтального скролла */
+    background-color: white;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: #212529;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #212529;
+}
+
+@media screen and (max-width: 576px) {
+    .containerImg {
+        flex-direction: column;
+    }
+    .mainCard{
+        margin: 0;
+    }
+    .mainCard:not(:first-child){
+
+        margin-top: 10px;
+    }
 }

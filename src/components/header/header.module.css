@@ -1,8 +1,29 @@
-.header {
-    display: grid;
-    grid-auto-flow: column;
-    gap: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 6em;
+.iconNavBar {
+    padding-left: 15px;
+}
+
+.nav {
+    padding-left: 15px;
+}
+
+.imgLogo {
+    height: 40px;
+    width: 40px;
+    position: relative;
+    bottom: 5px;
+}
+
+.navBarCollapse{
+    justify-content: space-between;
+    padding-right: 15px;
+}
+
+.addDish {
+    color: #adb1b8;
+}
+
+.addDish svg {
+    position: relative;
+    bottom: 2px;
+    right: 5px;
 }
