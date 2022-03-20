@@ -30,11 +30,16 @@ export const Modal: React.FC<Modal> = ({
         setTitle('');
         setInstruction('');
     }
+    const onCloseOutside = () => {
+        setShow(false)
+        setTitle('');
+        setInstruction('');
+    }
     const titleHandler = (e: ChangeEvent<HTMLInputElement>) => {setTitle(e.currentTarget.value)}
     const instructionHandler = (e: ChangeEvent<HTMLInputElement>) => {setInstruction(e.currentTarget.value)}
     const ingredientHandler = (e: ChangeEvent<HTMLInputElement>) => {setIngredient(e.currentTarget.value)}
     const ref: any = useRef();
-    useOnClickOutside(ref, onClose);
+    useOnClickOutside(ref, onCloseOutside);
 
     useEffect(() => {
         let res = JSON.parse(localStorage.getItem('favourites') as string);
@@ -46,8 +51,8 @@ export const Modal: React.FC<Modal> = ({
     return (
         <div>
             {show &&
-            <div>
-                <div ref={ref}>
+            <div ref={ref}>
+                <div>
                     <input onChange={titleHandler}/>
                 </div>
                 <div>

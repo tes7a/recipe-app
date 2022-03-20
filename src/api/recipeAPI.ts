@@ -63,6 +63,6 @@ export type Recipe = {
     strYoutube: string
 }
 
-export type Meals = {
+type Meals = {
     meals:  Recipe[]
 }

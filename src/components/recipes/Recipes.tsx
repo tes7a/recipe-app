@@ -1,8 +1,11 @@
 import React, {useCallback, useEffect} from "react";
-import { GetRecipe } from "../../api/getRecipe";
+import {GetRecipe} from "../../api/getRecipe";
 import {Recipe} from "../../api/recipeAPI";
-import { favoriteRecipe } from "../../utils/favorite-local-sotrage";
-import { Ingredients } from "./ingredients/Ingredients";
+import {favoriteRecipe} from "../../utils/favorite-local-sotrage";
+import {Ingredients} from "./ingredients/Ingredients";
+import s from './recipe.module.css';
+import sContainer from '../../Styles/Container.module.css'
+
 
 type Recipes = {
     recipes: Recipe[],
@@ -17,6 +20,7 @@ export const Recipes: React.FC<Recipes> = ({recipes, setRecipes, favorite, setFa
         GetRecipe(setRecipes);
     }, [recipes])
 
+    console.log(recipes)
     const onSaveHandler = useCallback(() => {
         setFavorite(favoriteRecipe(recipes[0]));
         GetRecipe(setRecipes);
@@ -30,12 +34,12 @@ export const Recipes: React.FC<Recipes> = ({recipes, setRecipes, favorite, setFa
     }, [])
 
     return <div>
-        <div>
+        <div className={sContainer.container}>
             <Ingredients recipe={recipes[0]}/>
-        </div>
-        <div>
-            <button onClick={onSaveHandler}>Save</button>
-            <button onClick={onSkipHandler}>Skip</button>
+            <div>
+                <button onClick={onSaveHandler} className={s.btn}>Save</button>
+                <button onClick={onSkipHandler} className={s.btn}>Skip</button>
+            </div>
         </div>
     </div>
 }

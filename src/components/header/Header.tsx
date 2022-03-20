@@ -1,14 +1,12 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import s from './header.module.css';
 
 export const Header = () => {
-    return <div className={s.header}>
-        <span>
-            <NavLink to={'/recipe'}>Recipes</NavLink>
-        </span>
-        <span>
-            <NavLink to={'/favorite'}>Favorite</NavLink>
-        </span>
+    return <div>
+        <nav className={s.header}>
+            <Link to={'/recipe'}>Recipes</Link>
+            <Link to={'/favorite'}>Favorite</Link>
+        </nav>
     </div>
 }
