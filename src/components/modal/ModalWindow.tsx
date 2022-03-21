@@ -1,39 +1,34 @@
-import React, {ChangeEvent, useEffect, useState, useRef} from "react";
-import {Recipe} from "../../api/recipeAPI";
+import React, {ChangeEvent, useEffect, useState, useRef, useContext} from "react";
 import {favoriteRecipe} from "../../utils/favorite-local-sotrage";
 import {NewRecipe} from "../recipes/newRecipe/newRecipe";
 import {useOnClickOutside} from "../../utils/useOnClickOutside";
 import {Form, FormGroup, Modal} from "react-bootstrap";
 import s from './modal.module.css'
 import Button from "react-bootstrap/esm/Button";
+import {FavoriteContext} from "../../utils/contextFavorite";
 
 type ModalWindow = {
     show: boolean,
     setShow: (value: boolean) => void,
-    setFavorite: (recipe: Recipe[]) => void,
 }
 
 export const ModalWindow: React.FC<ModalWindow> = ({
                                            show,
                                            setShow,
-                                           setFavorite
                                        }) => {
     const [title, setTitle] = useState('')
     const [instruction,setInstruction] = useState('')
     const [ingredient,setIngredient] = useState('')
 
-    console.log(show)
+    const {setFavorite} = useContext(FavoriteContext);
+
     const onAddDishHandler = () => {
         setFavorite(favoriteRecipe(NewRecipe(title, instruction, ingredient)));
         setShow(false);
         setTitle('');
         setInstruction('');
     }
-    const onClose = () => {
-        setShow(false)
-        setTitle('');
-        setInstruction('');
-    }
+
     const onCloseOutside = () => {
         setShow(false)
         setTitle('');
@@ -54,7 +49,7 @@ export const ModalWindow: React.FC<ModalWindow> = ({
 
     return (
         <Modal show={show}>
-            <Modal.Header closeButton={onClose}>
+            <Modal.Header closeButton={show}>
                 <Modal.Title>Add You Custom Dish</Modal.Title>
             </Modal.Header>
             <Modal.Body>

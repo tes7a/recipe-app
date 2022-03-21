@@ -1,18 +1,19 @@
-import React from "react";
-import { Recipe } from "../../api/recipeAPI";
-import { Ingredients } from "../recipes/ingredients/Ingredients";
+import React, {useContext} from "react";
+import {Recipe} from "../../api/recipeAPI";
+import {Ingredients} from "../recipes/ingredients/Ingredients";
+import {FavoriteContext} from "../../utils/contextFavorite";
 
-type Favorites = {
-    favorite: Recipe[],
-}
+export const Favorites = () => {
 
-export const Favorites: React.FC<Favorites> = ({favorite}) => {
+    const {favorite} = useContext(FavoriteContext);
 
-    return (<>
-        <ul>
-            {favorite.map(f =>
-                <Ingredients key={f.idMeal} recipe={f}/>
-            )}
-        </ul>
-    </>)
+    return (
+        <>
+            <ul>
+                {favorite.map((f: Recipe) =>
+                    <Ingredients key={f.idMeal} recipe={f}/>
+                )}
+            </ul>
+        </>
+    )
 }

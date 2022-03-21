@@ -1,14 +1,12 @@
 import React from "react";
 import Navbar from "react-bootstrap/esm/Navbar";
 import {Link} from "react-router-dom";
-import {Container, Nav} from "react-bootstrap";
+import {Nav} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from "styled-components";
 import s from './header.module.css'
 import logo from './../../img/logo.svg'
-import {useShow} from "../../utils/useShow";
 import Button from "react-bootstrap/esm/Button";
-import fileAdd from "./../../img/file-add.svg"
 
 const Styles = styled.div`
   a, .navbar-brand, .navbar-nav .nav-lin {
@@ -27,7 +25,6 @@ type Header = {
 }
 
 export const Header: React.FC<Header> = ({setShow}) => {
-
     const onShowHandler = () => {
         setShow(true);
     }

@@ -3,6 +3,7 @@ import {Recipe} from "../../../api/recipeAPI";
 import {getIngredients} from "./get-ingredients";
 import {Card} from "react-bootstrap";
 import s from "./ingredients.module.css";
+import sticky from './../../../img/sticky.svg'
 
 type Ingredients = {
     recipe: Recipe
@@ -28,7 +29,7 @@ export const Ingredients: React.FC<Ingredients> = ({recipe}) => {
                 </Card.Title>
                 <div className={s.containerImg}>
                     <div>
-                        <Card.Img variant="top" src={strMealThumb} className={s.img}/>
+                        <Card.Img variant="top" src={strMealThumb? strMealThumb: sticky} className={s.img}/>
                         <h5>Category: {strCategory}</h5>
                         <h6>Country: {strArea}</h6>
                         <div>Tags: {strTags}</div>
