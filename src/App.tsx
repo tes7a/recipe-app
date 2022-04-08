@@ -13,7 +13,7 @@ import {Recipe} from "./api/recipeAPI";
 
 function App() {
     const [show, setShow] = useState(false);
-    const [favorite, setFavorite] = useState<Recipe[]>([])
+    const [favorite, setFavorite] = useState<Recipe[]>([]);
 
     return (
         <FavoriteContext.Provider value={{favorite, setFavorite}}>
